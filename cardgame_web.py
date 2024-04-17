@@ -47,7 +47,7 @@ class deck_cards:
         for mycard in self.mycards:
             print(mycard)
 
-#mydeck = deck_cards()
+mydeck = deck_cards()
 #mydeck.print()
 
 from flask import Flask
@@ -63,22 +63,24 @@ def play_cards():
     p1c2 = app.deck.deal()
     p2c1 = app.deck.deal()
     p2c2 = app.deck.deal()
-    '''
+    
     mybetter = max(p1c1.get_real_val(),p1c2.get_real_val())
     cbetter = max(p2c1.get_real_val(),p2c2.get_real_val())
     print(mybetter,cbetter)
-    '''
+    
     #show them
     ret = "<H1>My cards "+str(p1c1)+" "+str(p1c2)+"<br/>"
     ret = ret + "Computer's cards "+str(p2c1)+" "+str(p2c2)+"</H1>"
-    '''
+    if p1c1.get_real_val() == p1c2.get_real_val() == p2c1.get_real_val() == p2c2.get_real_val():
+        ret = ret + "<br/>"
+    
     if mybetter > cbetter:
         ret = ret + "<br/> You Win."
     if mybetter < cbetter:
         ret = ret + "<br/> Computer Win."
     if mybetter == cbetter:
         ret = ret + "<br/> It's tie."
-    '''
+    
     return ret
 #add: deal 2 cards for player1, 2 cards for player2. Which one wins?
 #Win criteria: any pair is better than 2 non-pair cards
